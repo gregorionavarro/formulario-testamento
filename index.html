@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Protección Familiar — Formulario de Preparación</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#F0F2F5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1E293B}
+.app{max-width:620px;margin:0 auto;padding:20px 14px 60px}
+
+/* HEADER */
+.hdr-gold{height:4px;background:#B8962A;border-radius:14px 14px 0 0}
+.hdr-body{background:#0A1F3D;padding:22px 26px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hdr-brand{display:flex;align-items:center;gap:14px}
+.hdr-icon{width:48px;height:48px;border:2px solid #B8962A;border-radius:12px;background:rgba(184,150,42,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-icon i{font-size:24px;color:#D4AF50}
+.hdr-name{color:#fff;font-size:20px;font-weight:800;letter-spacing:.2px}
+.hdr-sub{color:#93C5FD;font-size:14px;margin-top:4px}
+.hdr-stat{text-align:right;flex-shrink:0}
+.hdr-stat-n{color:#D4AF50;font-size:28px;font-weight:900;line-height:1}
+.hdr-stat-t{color:#7DD3FC;font-size:11px;letter-spacing:.3px;margin-top:2px}
+.hdr-note{background:#0D2547;padding:11px 26px;border-radius:0;display:flex;align-items:flex-start;gap:8px}
+.hdr-note i{color:#D4AF50;font-size:15px;flex-shrink:0;margin-top:2px}
+.hdr-note span{font-size:14px;color:#7DD3FC;line-height:1.5}
+
+/* PROGRESS */
+.prog-wrap{background:#fff;border:1px solid #E2E8F0;border-top:none;padding:16px 24px 14px}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.prog-name{font-size:16px;font-weight:700;color:#0A1F3D}
+.prog-pct{font-size:16px;font-weight:800;color:#B8962A}
+.prog-track{height:6px;background:#E8ECF0;border-radius:99px;overflow:hidden;margin-bottom:9px}
+.prog-fill{height:100%;background:#0A1F3D;border-radius:99px;transition:width .5s ease}
+.prog-dots{display:flex;gap:5px}
+.prog-dot{flex:1;height:4px;border-radius:99px;background:#E8ECF0;transition:background .3s}
+.prog-dot.done{background:#0A1F3D}
+.prog-dot.active{background:#B8962A}
+
+/* CARD */
+.card{background:#fff;border:1px solid #E2E8F0;border-top:none}
+.card-head{padding:16px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #F1F5F9}
+.card-num{width:36px;height:36px;border-radius:50%;background:#0A1F3D;color:#D4AF50;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-title{font-size:19px;font-weight:800;color:#0A1F3D}
+.card-sub{font-size:14px;color:#94A3B8;margin-top:3px}
+.card-body{padding:22px 24px 24px}
+
+/* FORMS */
+.field{margin-bottom:18px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+label{font-size:13px;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:7px}
+input,select,textarea{width:100%;border:1.5px solid #E2E8F0;border-radius:9px;padding:13px 15px;font-size:16px;color:#1E293B;background:#FAFBFC;font-family:inherit;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0A1F3D;background:#fff;box-shadow:0 0 0 3px rgba(10,31,61,.08)}
+input::placeholder,textarea::placeholder{color:#CBD5E1;font-size:14px}
+
+/* RADIOS */
+.radios{display:flex;gap:8px;flex-wrap:wrap}
+.ropt{border:1.5px solid #E2E8F0;border-radius:9px;padding:12px 18px;font-size:16px;font-weight:600;color:#64748B;cursor:pointer;transition:all .15s;background:#FAFBFC;user-select:none}
+.ropt:hover{border-color:#94A3B8;background:#fff}
+.ropt.on{border-color:#0A1F3D;background:#EFF6FF;color:#0A1F3D}
+
+/* TABLE */
+.tbl-wrap{border:1.5px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:10px}
+table{width:100%;border-collapse:collapse}
+thead th{background:#0A1F3D;color:#D4AF50;padding:11px 12px;text-align:left;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+tbody td{padding:9px 9px;border-bottom:1px solid #F1F5F9}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even) td{background:#FAFBFC}
+tbody td input,tbody td select{padding:8px 10px;font-size:13px;border-radius:7px;border:1.5px solid #E2E8F0;background:#fff}
+.add-row-btn{width:100%;padding:11px;border:1.5px dashed #CBD5E1;border-radius:9px;background:none;font-size:15px;font-weight:700;color:#64748B;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s;margin-top:9px;font-family:inherit}
+.add-row-btn:hover{border-color:#0A1F3D;color:#0A1F3D;background:#F8FAFC}
+
+/* INFO BOXES */
+.info{border-radius:9px;padding:13px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.info i{font-size:18px;flex-shrink:0;margin-top:1px}
+.info p{font-size:15px;line-height:1.6;color:#334155}
+.info p strong{font-weight:700}
+.info.gold{background:#FFFBEB;border:1px solid #FDE68A}.info.gold i{color:#B8962A}
+.info.blue{background:#EFF6FF;border:1px solid #BFDBFE}.info.blue i{color:#1B4F8C}
+.info.teal{background:#F0FDF9;border:1px solid #99F6E4}.info.teal i{color:#0F766E}
+.info.green{background:#F0FDF4;border:1px solid #BBF7D0}.info.green i{color:#166534}
+
+/* BIENES */
+.bienes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.bien{border-radius:10px;padding:14px 16px}
+.bien.si{background:#F0FDF4;border:1px solid #86EFAC;border-left:4px solid #166534}
+.bien.no{background:#FEF2F2;border:1px solid #FECACA;border-left:4px solid #7F1D1D}
+.bien-t{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px}
+.bien.si .bien-t{color:#166534}.bien.no .bien-t{color:#7F1D1D}
+.bien p{font-size:15px;color:#475569;line-height:1.5;margin-bottom:4px}
+
+/* VALORES */
+.valores{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.vopt{border:1.5px solid #E2E8F0;border-radius:9px;padding:14px;font-size:15px;text-align:center;cursor:pointer;color:#64748B;background:#FAFBFC;transition:all .15s;font-weight:500;user-select:none}
+.vopt:hover{border-color:#94A3B8}
+.vopt.on{border-color:#0A1F3D;background:#EFF6FF;color:#0A1F3D;font-weight:700}
+
+/* DIVIDER */
+.sdiv{font-size:13px;font-weight:800;color:#0A1F3D;text-transform:uppercase;letter-spacing:.6px;margin:20px 0 14px;display:flex;align-items:center;gap:8px}
+.sdiv::after{content:'';flex:1;height:1px;background:#F1F5F9}
+
+/* POLIZA BLOCK */
+.poliza-wrap{border-top:2px solid #F1F5F9;padding-top:20px;margin-top:4px;margin-bottom:6px}
+.poliza-title{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.poliza-title i{font-size:20px;color:#B8962A}
+.poliza-title span{font-size:18px;font-weight:800;color:#0A1F3D}
+.poliza-intro{font-size:16px;color:#475569;line-height:1.65;margin-bottom:16px}
+.poliza-intro strong{color:#0A1F3D;font-weight:700}
+.pitems{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.pitem{display:flex;align-items:flex-start;gap:12px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px 15px}
+.pnum{width:26px;height:26px;border-radius:50%;background:#B8962A;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pt{font-size:16px;font-weight:700;color:#78350F;margin:0 0 4px}
+.ps{font-size:15px;color:#92400E;margin:0;line-height:1.55}
+.pbox{background:#fff;border:1px solid #FDE68A;border-radius:9px;overflow:hidden;margin:12px 0 10px}
+.pbox-head{background:#B8962A;padding:9px 14px}
+.pbox-head p{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin:0}
+.pbox-body{padding:12px 14px;display:flex;flex-direction:column;gap:9px}
+.prow{display:flex;align-items:center;gap:9px}
+.prow i{font-size:16px;color:#B8962A;flex-shrink:0}
+.prow span{font-size:15px;color:#475569;line-height:1.4}
+.palert{background:#FEF3C7;border-radius:8px;padding:11px 14px;display:flex;align-items:flex-start;gap:8px}
+.palert i{font-size:16px;color:#92400E;flex-shrink:0;margin-top:1px}
+.palert p{font-size:15px;color:#78350F;margin:0;line-height:1.5}
+.palert strong{font-weight:700}
+.poliza-footer{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:9px;padding:13px 16px;display:flex;align-items:flex-start;gap:10px}
+.poliza-footer i{font-size:18px;color:#1B4F8C;flex-shrink:0;margin-top:1px}
+.poliza-footer p{font-size:15px;color:#1E3A5F;line-height:1.55;margin:0}
+
+/* BOTTOM BAR */
+.bottom-bar{background:#fff;border:1px solid #E2E8F0;border-top:1px solid #F1F5F9;border-radius:0 0 14px 14px;padding:18px 24px}
+.btns{display:flex;gap:12px}
+.btn{flex:1;padding:15px;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;transition:all .15s}
+.btn-prev{background:#F1F5F9;color:#475569}.btn-prev:hover{background:#E2E8F0}
+.btn-next{background:#0A1F3D;color:#fff}.btn-next:hover{background:#122B52}
+.btn-finish{background:#B8962A;color:#fff}.btn-finish:hover{background:#9A7D20}
+.save-row{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:11px;font-size:12px;color:#94A3B8;min-height:20px}
+.save-row.ok{color:#16A34A}.save-row.err{color:#DC2626}
+
+/* LOGIN */
+.login-wrap{background:#fff;border:1px solid #E2E8F0;border-top:none;border-radius:0 0 14px 14px;padding:40px 30px;text-align:center}
+.login-ic{width:76px;height:76px;background:#EFF6FF;border-radius:20px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.login-ic i{font-size:36px;color:#0A1F3D}
+.login-title{font-size:24px;font-weight:800;color:#0A1F3D;margin-bottom:8px}
+.login-sub{font-size:15px;color:#64748B;line-height:1.65;margin-bottom:26px;max-width:340px;margin-left:auto;margin-right:auto}
+.ph-wrap{display:flex;gap:10px;max-width:360px;margin:0 auto 12px}
+.ph-wrap input{font-size:17px;padding:14px 16px;border-radius:10px;border:2px solid #E2E8F0;text-align:center;letter-spacing:.5px;flex:1}
+.ph-wrap input:focus{border-color:#0A1F3D;box-shadow:0 0 0 3px rgba(10,31,61,.1)}
+.ph-btn{background:#0A1F3D;color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:17px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ph-btn:hover{background:#122B52}
+.login-hint{font-size:13px;color:#94A3B8;max-width:320px;margin:0 auto;line-height:1.6}
+
+/* SUMMARY */
+.summary-wrap{background:#fff;border:1px solid #E2E8F0;border-top:none;border-radius:0 0 14px 14px;padding:26px 24px}
+.done-banner{background:#F0FDF4;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;margin-bottom:22px}
+.done-banner i{font-size:42px;color:#16A34A;display:block;margin-bottom:10px}
+.done-banner h3{font-size:20px;font-weight:800;color:#14532D;margin-bottom:6px}
+.done-banner p{font-size:15px;color:#166534;line-height:1.6}
+.sum-sec{margin-bottom:18px}
+.sum-sec-t{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#94A3B8;padding-bottom:8px;border-bottom:1px solid #F1F5F9;margin-bottom:10px}
+.sum-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid #F8FAFC;font-size:16px}
+.sum-row:last-child{border-bottom:none}
+.sum-k{color:#64748B;flex-shrink:0;margin-right:10px}
+.sum-v{color:#0A1F3D;font-weight:700;text-align:right}
+.sum-empty{font-size:13px;color:#CBD5E1;font-style:italic;padding:5px 0}
+.btn-edit{width:100%;padding:14px;background:#F1F5F9;color:#0A1F3D;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;transition:background .15s}
+.btn-edit:hover{background:#E2E8F0}
+
+@media(max-width:480px){
+  .row2,.bienes,.valores{grid-template-columns:1fr}
+  .radios{flex-direction:column}
+  .card-body{padding:18px 18px 20px}
+  .bottom-bar,.hdr-body{padding-left:18px;padding-right:18px}
+  .hdr-name{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div style="border-radius:14px 14px 0 0;overflow:hidden">
+    <div class="hdr-gold"></div>
+    <div class="hdr-body">
+      <div class="hdr-brand">
+        <div class="hdr-icon"><i class="ti ti-shield-heart"></i></div>
+        <div>
+          <div class="hdr-name">Plan de Protección Familiar</div>
+          <div class="hdr-sub">Formulario de preparación — borrador confidencial</div>
+        </div>
+      </div>
+      <div class="hdr-stat">
+        <div class="hdr-stat-n">7</div>
+        <div class="hdr-stat-t">secciones</div>
+      </div>
+    </div>
+    <div class="hdr-note">
+      <i class="ti ti-info-circle"></i>
+      <span>Este formulario es un borrador de preparación. Sus datos se usarán para completar el testamento directamente en el sistema con su asesor.</span>
+    </div>
+  </div>
+  <div id="root"></div>
+</div>
+
+<script>
+const SECS=[
+  {t:"Información personal",   s:"Datos de identificación del titular"},
+  {t:"Cónyuge o pareja",       s:"Estado civil y datos de la pareja"},
+  {t:"Sus hijos",              s:"Nombres, fechas y menores de 18 años"},
+  {t:"El guardián",            s:"Quién cuidará a sus hijos menores"},
+  {t:"El albacea",             s:"Quién ejecutará el testamento"},
+  {t:"Sus bienes",             s:"Bienes exclusivamente a su nombre"},
+  {t:"Información adicional",  s:"Mascotas, regalos y deseos fúnebres"},
+];
+
+let ST={step:-1,phone:"",phoneInput:"",data:{}};
+
+function g(k,d=""){return ST.data[k]??d;}
+function sv(k,v){ST.data[k]=v;save();}
+
+function save(){
+  if(!ST.phone)return;
+  try{
+    localStorage.setItem("ppf_"+ST.phone,JSON.stringify(ST.data));
+    showSave('ok','Guardado automáticamente');
+  }catch(e){showSave('err','No se pudo guardar');}
+}
+
+function showSave(cls,msg){
+  const el=document.querySelector('.save-row');
+  if(el){
+    el.className='save-row '+cls;
+    el.innerHTML='<i class="ti ti-'+(cls==='ok'?'cloud-check':'alert-circle')+'"></i>&nbsp;'+msg;
+    clearTimeout(ST._t);
+    ST._t=setTimeout(()=>{
+      const e2=document.querySelector('.save-row');
+      if(e2){e2.className='save-row';e2.innerHTML='<i class="ti ti-cloud"></i>&nbsp;Guardado automático activado';}
+    },2500);
+  }
+}
+
+function load(ph){
+  try{const r=localStorage.getItem("ppf_"+ph);return r?JSON.parse(r):{};}
+  catch(e){return{};}
+}
+
+function login(){
+  const ph=(ST.phoneInput||"").replace(/\D/g,"");
+  if(ph.length<7){alert("Por favor ingrese un número de teléfono válido.");return;}
+  ST.phone=ph;ST.data=load(ph);ST.step=0;render();window.scrollTo(0,0);
+}
+
+function nav(d){
+  const ns=ST.step+d;
+  if(ns>=0&&ns<SECS.length){ST.step=ns;render();window.scrollTo(0,0);}
+  else if(ns>=SECS.length){ST.step=SECS.length;render();window.scrollTo(0,0);}
+}
+
+function addHijo(){const h=g('hijos',[]);h.push({n:"",f:"",m:""});sv('hijos',h);render();}
+function setH(i,k,v){const h=g('hijos',[]);h[i][k]=v;ST.data['hijos']=h;save();}
+function setV(v){sv('vb',v);render();}
+function setEC(v){sv('ec',v);render();}
+
+function pct(){return Math.round(((ST.step+1)/SECS.length)*100);}
+
+function body(){
+  switch(ST.step){
+    case 0:return`
+      <div class="row2">
+        <div><label>Nombre completo legal</label><input value="${g('nom')}" oninput="sv('nom',this.value)" placeholder="Como en su documento oficial"></div>
+        <div><label>Género</label><select onchange="sv('gen',this.value)"><option value="">Seleccione</option><option ${g('gen')=='M'?'selected':''} value="M">Masculino</option><option ${g('gen')=='F'?'selected':''} value="F">Femenino</option><option ${g('gen')=='O'?'selected':''} value="O">Prefiero no decir</option></select></div>
+      </div>
+      <div class="row2">
+        <div><label>Fecha de nacimiento</label><input type="date" value="${g('nac')}" oninput="sv('nac',this.value)"></div>
+        <div><label>Teléfono EE.UU.</label><input value="${g('tel')}" oninput="sv('tel',this.value)" placeholder="(555) 000-0000"></div>
+      </div>
+      <div class="row2">
+        <div><label>Estado de residencia</label><input value="${g('est')}" oninput="sv('est',this.value)" placeholder="Florida, Texas..."></div>
+        <div><label>Ciudad</label><input value="${g('ciu')}" oninput="sv('ciu',this.value)"></div>
+      </div>
+      <div class="field"><label>Dirección completa</label><input value="${g('dir')}" oninput="sv('dir',this.value)" placeholder="Calle, número, código postal"></div>
+      <div class="info gold"><i class="ti ti-alert-circle"></i><p>Use su nombre <strong>exactamente</strong> como aparece en su licencia o pasaporte. No se requiere número de Seguro Social.</p></div>`;
+
+    case 1:{const ec=g('ec');return`
+      <div class="field"><label>Estado civil actual</label>
+        <div class="radios">
+          <div class="ropt ${ec==='casado'?'on':''}" onclick="setEC('casado')">Casado / Casada</div>
+          <div class="ropt ${ec==='union'?'on':''}" onclick="setEC('union')">Unión de hecho</div>
+          <div class="ropt ${ec==='soltero'?'on':''}" onclick="setEC('soltero')">Soltero/a o Viudo/a</div>
+        </div>
+      </div>
+      ${(ec==='casado'||ec==='union')?`
+        <div class="info teal"><i class="ti ti-users"></i><p>Al finalizar el proceso, podrá crear un documento equivalente para su pareja. Se recomienda que ambos lo completen.</p></div>
+        <div class="row2"><div><label>Nombre de pila</label><input value="${g('pn')}" oninput="sv('pn',this.value)"></div><div><label>Segundo nombre</label><input value="${g('ps')}" oninput="sv('ps',this.value)" placeholder="Opcional"></div></div>
+        <div class="field"><label>Apellido</label><input value="${g('pa')}" oninput="sv('pa',this.value)"></div>`
+      :`<div class="info blue"><i class="ti ti-info-circle"></i><p>Sin cónyuge, su patrimonio irá directamente a las personas que designe en las siguientes secciones.</p></div>`}`;}
+
+    case 2:{const hijos=g('hijos',[]);return`
+      <div class="info blue"><i class="ti ti-info-circle"></i><p>Incluya a <strong>todos sus hijos</strong>, incluso los que viven fuera de EE.UU. Los menores de 18 años requieren un guardián legal (sección 4).</p></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th style="width:44%">Nombre legal completo</th><th style="width:30%">Fecha de nacimiento</th><th style="width:26%;text-align:center">¿Menor 18?</th></tr></thead>
+        <tbody>
+          ${hijos.map((h,i)=>`<tr>
+            <td><input value="${h.n||''}" oninput="setH(${i},'n',this.value)" placeholder="Nombre completo"></td>
+            <td><input type="date" value="${h.f||''}" oninput="setH(${i},'f',this.value)"></td>
+            <td style="text-align:center"><select onchange="setH(${i},'m',this.value)"><option value="">—</option><option ${h.m==='si'?'selected':''} value="si">Sí</option><option ${h.m==='no'?'selected':''} value="no">No</option></select></td>
+          </tr>`).join('')}
+          ${hijos.length===0?`<tr><td colspan="3" style="text-align:center;color:#CBD5E1;font-style:italic;padding:18px 10px;font-size:13px">Haga clic en Agregar para añadir un hijo</td></tr>`:''}
+        </tbody>
+      </table></div>
+      <button class="add-row-btn" onclick="addHijo()"><i class="ti ti-plus"></i> Agregar hijo / hija</button>`;}
+
+    case 3:return`
+      <div class="info teal"><i class="ti ti-shield-heart"></i><p><strong>¿Qué es el guardián?</strong> La persona que asumirá la tutela legal de sus hijos menores si ambos padres llegaran a faltar. Debe coincidir con el beneficiario designado en su póliza de seguro de vida.</p></div>
+      <div class="sdiv">Guardián principal</div>
+      <div class="row2"><div><label>Nombre completo legal</label><input value="${g('g1n')}" oninput="sv('g1n',this.value)"></div><div><label>Relación</label><input value="${g('g1r')}" oninput="sv('g1r',this.value)" placeholder="Tía, abuela, hermano..."></div></div>
+      <div class="row2"><div><label>Ciudad / Estado donde vive</label><input value="${g('g1c')}" oninput="sv('g1c',this.value)"></div><div><label>Teléfono o correo</label><input value="${g('g1t')}" oninput="sv('g1t',this.value)"></div></div>
+      <div class="sdiv">Guardián alternativo</div>
+      <div class="row2"><div><label>Nombre completo legal</label><input value="${g('g2n')}" oninput="sv('g2n',this.value)"></div><div><label>Relación</label><input value="${g('g2r')}" oninput="sv('g2r',this.value)"></div></div>
+      <div class="info gold"><i class="ti ti-alert-circle"></i><p>Informe a esta persona que fue designada como guardián. <strong>Debe conocer y aceptar</strong> esta responsabilidad antes de firmar el documento.</p></div>`;
+
+    case 4:return`
+      <div class="info blue"><i class="ti ti-briefcase"></i><p><strong>El albacea</strong> localiza sus bienes, paga deudas, distribuye la herencia y gestiona el proceso legal. No necesita ser abogado — solo mayor de edad, organizado y de confianza.</p></div>
+      <div class="sdiv">Albacea principal</div>
+      <div class="row2"><div><label>Nombre completo legal</label><input value="${g('a1n')}" oninput="sv('a1n',this.value)"></div><div><label>Relación</label><input value="${g('a1r')}" oninput="sv('a1r',this.value)" placeholder="Cónyuge, hermano..."></div></div>
+      <div class="sdiv">Albacea alternativo</div>
+      <div class="row2"><div><label>Nombre completo legal</label><input value="${g('a2n')}" oninput="sv('a2n',this.value)"></div><div><label>Relación</label><input value="${g('a2r')}" oninput="sv('a2r',this.value)"></div></div>`;
+
+    case 5:{const val=g('vb');return`
+      <div class="bienes">
+        <div class="bien si"><div class="bien-t">✓ Sí van al testamento</div><p>Cuentas bancarias solo suyas</p><p>Casa o propiedad solo suya</p><p>Vehículo solo a su nombre</p><p>Joyas y objetos de valor</p><p>Dinero en efectivo</p></div>
+        <div class="bien no"><div class="bien-t">✗ No van al testamento</div><p>Seguro de vida (va en la póliza)</p><p>Cuentas conjuntas con pareja</p><p>401(k), IRA, pensión</p><p>Bienes comprados en pareja</p></div>
+      </div>
+      <div class="field"><label>Valor aproximado de sus bienes exclusivos</label>
+        <div class="valores">
+          ${['Menos de $200,000','$200,000 – $500,000','$500,000 – $1 millón','Más de $1 millón'].map(v=>`<div class="vopt ${val===v?'on':''}" onclick="setV('${v}')">${v}</div>`).join('')}
+        </div>
+      </div>
+      <div class="poliza-wrap">
+        <div class="poliza-title"><i class="ti ti-link"></i><span>Cómo se conecta su póliza con este testamento</span></div>
+        <p class="poliza-intro">El seguro de vida que está siendo procesado <strong>no pasa por el testamento</strong> — el dinero va directamente al beneficiario designado en la póliza. Para que todo funcione en armonía, estos tres puntos deben coincidir:</p>
+        <div class="pitems">
+          <div class="pitem">
+            <div class="pnum">1</div>
+            <div><p class="pt">Beneficiario primario en la póliza</p><p class="ps">Su pareja recibe el porcentaje principal — para sostener el hogar y los gastos del día a día.</p></div>
+          </div>
+          <div class="pitem" style="align-items:flex-start">
+            <div class="pnum">2</div>
+            <div style="flex:1">
+              <p class="pt">Beneficiario contingente — el guardián de sus hijos</p>
+              <p class="ps" style="margin-bottom:12px">El guardián designado en la sección 4 debe estar en la póliza con un porcentaje específico. Ese dinero es lo que le permitirá cuidar a sus hijos sin que sea una carga económica.</p>
+              <div class="pbox">
+                <div class="pbox-head"><p>¿Para qué sirve ese porcentaje?</p></div>
+                <div class="pbox-body">
+                  <div class="prow"><i class="ti ti-home"></i><span>Renta o hipoteca del hogar donde vivirán sus hijos</span></div>
+                  <div class="prow"><i class="ti ti-school"></i><span>Educación, útiles y gastos escolares hasta la mayoría de edad</span></div>
+                  <div class="prow"><i class="ti ti-heart-rate-monitor"></i><span>Gastos médicos, seguro de salud y medicamentos</span></div>
+                  <div class="prow"><i class="ti ti-shopping-cart"></i><span>Alimentación, ropa y necesidades diarias</span></div>
+                  <div class="prow"><i class="ti ti-calendar"></i><span>Cubre desde hoy hasta que sus hijos cumplan 18 años</span></div>
+                </div>
+              </div>
+              <div class="palert"><i class="ti ti-alert-circle"></i><p>Si el guardián no está en la póliza, recibirá la custodia de sus hijos pero <strong>sin los recursos económicos para cuidarlos</strong>.</p></div>
+            </div>
+          </div>
+          <div class="pitem">
+            <div class="pnum">3</div>
+            <div><p class="pt">El guardián del testamento = guardián en la póliza</p><p class="ps">La persona de la sección 4 debe ser exactamente la misma designada en su póliza.</p></div>
+          </div>
+        </div>
+        <div class="poliza-footer"><i class="ti ti-info-circle"></i><p>Su asesor ya tiene estos datos y se asegurará de que la póliza y el testamento queden perfectamente alineados.</p></div>
+      </div>`;}
+
+    case 6:return`
+      <div class="info green"><i class="ti ti-leaf"></i><p>Esta sección es <strong>completamente opcional</strong>. Puede dejarse en blanco y completarse con su asesor.</p></div>
+      <div class="sdiv">Mascotas</div>
+      <div class="row2"><div><label>Nombre y especie</label><input value="${g('mas_n')}" oninput="sv('mas_n',this.value)" placeholder="Max, perro labrador"></div><div><label>Cuidador designado</label><input value="${g('mas_c')}" oninput="sv('mas_c',this.value)"></div></div>
+      <div class="sdiv">Regalos específicos</div>
+      <div class="row2"><div><label>Bien que desea dejar</label><input value="${g('r1b')}" oninput="sv('r1b',this.value)" placeholder="Ej: mi vehículo"></div><div><label>Para quién</label><input value="${g('r1p')}" oninput="sv('r1p',this.value)"></div></div>
+      <div class="row2"><div><label>Otro bien</label><input value="${g('r2b')}" oninput="sv('r2b',this.value)"></div><div><label>Para quién</label><input value="${g('r2p')}" oninput="sv('r2p',this.value)"></div></div>
+      <div class="sdiv">Deseos fúnebres</div>
+      <div class="row2"><div><label>Quién organizaría el funeral</label><input value="${g('fun_q')}" oninput="sv('fun_q',this.value)"></div><div><label>Relación</label><input value="${g('fun_r')}" oninput="sv('fun_r',this.value)"></div></div>
+      <div class="field"><label>Preferencias</label><textarea rows="2" style="resize:vertical" oninput="sv('fun_n',this.value)" placeholder="Lugar, tipo de servicio, música...">${g('fun_n')}</textarea></div>`;
+
+    default:return"";
+  }
+}
+
+function viewLogin(){return`
+  <div class="login-wrap">
+    <div class="login-ic"><i class="ti ti-device-mobile"></i></div>
+    <div class="login-title">Ingrese su número de teléfono</div>
+    <div class="login-sub">Para comenzar o continuar donde lo dejó. No necesita crear cuenta ni contraseña.</div>
+    <div class="ph-wrap">
+      <input type="tel" placeholder="(555) 000-0000" oninput="ST.phoneInput=this.value" onkeydown="if(event.key==='Enter')login()" autofocus>
+      <button class="ph-btn" onclick="login()"><i class="ti ti-arrow-right"></i></button>
+    </div>
+    <div class="login-hint">Use siempre el mismo número para continuar desde cualquier dispositivo.</div>
+  </div>`;}
+
+function viewMain(){
+  const p=pct(),isLast=ST.step===SECS.length-1;
+  const saveRow=ST.saveMsg?'':`<div class="save-row"><i class="ti ti-cloud"></i>&nbsp;Guardado automático activado</div>`;
+  return`
+    <div class="prog-wrap">
+      <div class="prog-top"><span class="prog-name">${SECS[ST.step].t}</span><span class="prog-pct">${p}%</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:${p}%"></div></div>
+      <div class="prog-dots">${SECS.map((_,i)=>`<div class="prog-dot ${i<ST.step?'done':i===ST.step?'active':''}"></div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">0${ST.step+1}</div>
+        <div><div class="card-title">${SECS[ST.step].t}</div><div class="card-sub">${SECS[ST.step].s}</div></div>
+      </div>
+      <div class="card-body">${body()}</div>
+    </div>
+    <div class="bottom-bar">
+      <div class="btns">
+        ${ST.step>0?`<button class="btn btn-prev" onclick="nav(-1)"><i class="ti ti-arrow-left"></i> Anterior</button>`:''}
+        <button class="btn ${isLast?'btn-finish':'btn-next'}" onclick="nav(1)">
+          ${isLast?'<i class="ti ti-check"></i> Ver resumen':'Siguiente <i class="ti ti-arrow-right"></i>'}
+        </button>
+      </div>
+      ${saveRow}
+    </div>`;}
+
+function viewSummary(){
+  const d=ST.data,hijos=g('hijos',[]);
+  const EC={casado:'Casado/a',union:'Unión de hecho',soltero:'Soltero/a'}[d.ec]||'—';
+  const rows=items=>items.filter(([,v])=>v).map(([k,v])=>`<div class="sum-row"><span class="sum-k">${k}</span><span class="sum-v">${v}</span></div>`).join('');
+  return`
+    <div class="summary-wrap">
+      <div class="done-banner">
+        <i class="ti ti-circle-check"></i>
+        <h3>Borrador completado</h3>
+        <p>Su información quedó guardada. Comparta este resumen con su asesor para ingresar los datos directamente en el sistema del testamento.</p>
+      </div>
+      <div class="sum-sec"><div class="sum-sec-t">Información personal</div>${rows([['Nombre',d.nom],['Fecha de nacimiento',d.nac],['Estado / Ciudad',[d.est,d.ciu].filter(Boolean).join(', ')],['Teléfono',d.tel],['Dirección',d.dir]])||'<div class="sum-empty">Sin datos</div>'}</div>
+      <div class="sum-sec"><div class="sum-sec-t">Cónyuge o pareja</div>${rows([['Estado civil',EC],['Nombre de la pareja',[d.pn,d.ps,d.pa].filter(Boolean).join(' ')]])||'<div class="sum-empty">Sin datos</div>'}</div>
+      <div class="sum-sec"><div class="sum-sec-t">Hijos (${hijos.length})</div>${hijos.length?hijos.map(h=>`<div class="sum-row"><span class="sum-k">${h.n||'Sin nombre'}</span><span class="sum-v">${h.m==='si'?'Menor de 18':h.m==='no'?'Mayor de 18':'—'}</span></div>`).join(''):'<div class="sum-empty">Sin hijos registrados</div>'}</div>
+      <div class="sum-sec"><div class="sum-sec-t">Guardián</div>${rows([['Principal',d.g1n],['Relación',d.g1r],['Alternativo',d.g2n]])||'<div class="sum-empty">Sin datos</div>'}</div>
+      <div class="sum-sec"><div class="sum-sec-t">Albacea</div>${rows([['Principal',d.a1n],['Alternativo',d.a2n]])||'<div class="sum-empty">Sin datos</div>'}</div>
+      <div class="sum-sec"><div class="sum-sec-t">Bienes</div>${rows([['Valor aproximado',d.vb]])||'<div class="sum-empty">Sin datos</div>'}</div>
+      ${(d.mas_n||d.r1b||d.fun_q)?`<div class="sum-sec"><div class="sum-sec-t">Adicional</div>${rows([['Mascota',d.mas_n],['Regalo 1',[d.r1b,d.r1p].filter(Boolean).join(' → ')],['Regalo 2',[d.r2b,d.r2p].filter(Boolean).join(' → ')],['Funeral',d.fun_q]])}</div>`:''}
+      <button class="btn-edit" onclick="ST.step=0;render()"><i class="ti ti-edit"></i> Editar información</button>
+    </div>`;}
+
+function render(){
+  const root=document.getElementById('root');
+  if(ST.step===-1)root.innerHTML=viewLogin();
+  else if(ST.step>=SECS.length)root.innerHTML=viewSummary();
+  else root.innerHTML=viewMain();
+}
+render();
+</script>
+</body>
+</html>
